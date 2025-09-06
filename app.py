@@ -175,43 +175,25 @@ def build_ui():
         line-height: 1.5 !important;
     }
     
-    /* Avatar styling - Better fallback */
-    .chatbot .avatar {
-        width: 40px !important;
-        height: 40px !important;
+    /* Message indicators - Modern colored dots */
+    .chatbot .message::before {
+        content: '' !important;
+        width: 12px !important;
+        height: 12px !important;
         border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 18px !important;
-        font-weight: bold !important;
         flex-shrink: 0 !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-        border: 2px solid white !important;
         margin: 0 12px !important;
-        background-size: cover !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     }
     
-    .chatbot .message.user .avatar {
+    .chatbot .message.user::before {
         background: linear-gradient(135deg, #667eea, #764ba2) !important;
-        color: white !important;
         order: 2 !important;
     }
     
-    .chatbot .message.assistant .avatar {
+    .chatbot .message.assistant::before {
         background: linear-gradient(135deg, #10b981, #059669) !important;
-        color: white !important;
         order: 1 !important;
-    }
-    
-    /* Avatar image styling */
-    .chatbot .avatar img {
-        width: 100% !important;
-        height: 100% !important;
-        border-radius: 50% !important;
-        object-fit: cover !important;
     }
     
     /* Input area */
@@ -526,13 +508,12 @@ def build_ui():
             # Chat history state
             history = gr.State([])
             
-            # Enhanced chatbot with proper avatars and clean interface
+            # Enhanced chatbot with clean interface (no avatars)
             chatbot = gr.Chatbot(
                 label="",
                 height=600,
                 show_copy_button=False,
                 type="messages",
-                avatar_images=("👤", "🤖"),
                 show_label=False,
                 container=True,
                 show_share_button=False
