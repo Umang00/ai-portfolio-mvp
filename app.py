@@ -152,6 +152,7 @@ def build_ui():
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
         font-size: 15px !important;
         line-height: 1.5 !important;
+        margin-left: 20px !important;
     }
     
     /* Assistant message styling */
@@ -173,27 +174,12 @@ def build_ui():
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
         font-size: 15px !important;
         line-height: 1.5 !important;
+        margin-right: 20px !important;
     }
     
-    /* Message indicators - Modern colored dots */
-    .chatbot .message::before {
-        content: '' !important;
-        width: 12px !important;
-        height: 12px !important;
-        border-radius: 50% !important;
-        flex-shrink: 0 !important;
-        margin: 0 12px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-    }
-    
-    .chatbot .message.user::before {
-        background: linear-gradient(135deg, #667eea, #764ba2) !important;
-        order: 2 !important;
-    }
-    
-    .chatbot .message.assistant::before {
-        background: linear-gradient(135deg, #10b981, #059669) !important;
-        order: 1 !important;
+    /* Hide avatars for cleaner design */
+    .chatbot .avatar {
+        display: none !important;
     }
     
     /* Input area */
@@ -508,7 +494,7 @@ def build_ui():
             # Chat history state
             history = gr.State([])
             
-            # Enhanced chatbot with clean interface (no avatars)
+            # Enhanced chatbot with proper avatars and clean interface
             chatbot = gr.Chatbot(
                 label="",
                 height=600,
@@ -610,7 +596,6 @@ if __name__ == "__main__":
         print(f"🌐 Public URL will be available after startup")
         
         demo.launch(
-            share=True,
             server_name="127.0.0.1",  # Use localhost for better compatibility
             server_port=free_port,
             show_error=True,
@@ -621,7 +606,6 @@ if __name__ == "__main__":
         print("❌ No free ports available in range 7860-7889")
         print("🔄 Letting Gradio find an available port...")
         demo.launch(
-            share=True,
             server_name="127.0.0.1",
             show_error=True,
             inbrowser=True,
